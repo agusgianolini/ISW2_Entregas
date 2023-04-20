@@ -483,21 +483,24 @@ numeratorOfAddingAFraccion: aFraccionAdder
 
 	^ (self * aFraccionAdder denominator) + aFraccionAdder numerator! !
 
+!Entero methodsFor: 'arithmetic operations' stamp: 'Ag 4/20/2023 16:21:52'!
+numeratorOfSubstractingToFraccion: anFraccionMinuend
+
+	^ anFraccionMinuend numerator - (anFraccionMinuend denominator * self)! !
+
 !Entero methodsFor: 'arithmetic operations' stamp: 'mp 4/18/2023 20:03:55'!
 substractToEntero: anEnteroMinuend
 	
 	^self class with: anEnteroMinuend integerValue - value.
 ! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'mp 4/18/2023 20:13:09'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'Ag 4/20/2023 16:23:26'!
 substractToFraccion: anFraccionMinuend
 
-	| newNumerator newDenominator |
 
-	newNumerator := anFraccionMinuend numerator - (anFraccionMinuend denominator * self).
-	newDenominator := anFraccionMinuend denominator.
+	^(self numeratorOfSubstractingToFraccion: anFraccionMinuend) / anFraccionMinuend denominator.
 	
-	^newNumerator / newDenominator
+	
 
 ! !
 
@@ -679,6 +682,11 @@ denominatorOfAddingAFraccion: aFraccionAdder
 	
 	! !
 
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'Ag 4/20/2023 16:12:53'!
+denominatorOfSubstractingToFraccion: aFraccionMinuend
+
+	^ denominator * aFraccionMinuend denominator! !
+
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'Ag 4/18/2023 20:39:47'!
 divideFromEntero: anEnteroDividend
 		
@@ -713,21 +721,33 @@ numeratorOfAddingAFraccion: aFraccionAdder
 	
 	! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'mp 4/18/2023 20:03:47'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'Ag 4/20/2023 16:18:17'!
+numeratorOfSubstractingAnEntero: anEnteroMinuend
+
+	^ (denominator * anEnteroMinuend) - numerator! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'Ag 4/20/2023 16:11:54'!
+numeratorOfSubstractingToFraccion: aFraccionMinuend
+	
+	
+	 ^(denominator * aFraccionMinuend numerator) - (numerator * aFraccionMinuend denominator).
+	
+
+! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'Ag 4/20/2023 16:18:17'!
 substractToEntero: anEnteroMinuend
 	
-	^ ((denominator * anEnteroMinuend) - numerator ) / denominator! !
+	^ ((self numeratorOfSubstractingAnEntero: anEnteroMinuend) ) / denominator! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'mp 4/18/2023 20:11:08'!
-substractToFraccion: anFraccionMinuend
-	
-	| newNumerator newDenominator |
-	
-	newNumerator :=  (denominator * anFraccionMinuend numerator) - (numerator * anFraccionMinuend denominator).
-	newDenominator := denominator * anFraccionMinuend denominator.
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'Ag 4/20/2023 16:16:20'!
+substractToFraccion: aFraccionMinuend
 	
 	
-	^newNumerator / newDenominator
+	^(self numeratorOfSubstractingToFraccion: aFraccionMinuend)/	(self denominatorOfSubstractingToFraccion: aFraccionMinuend)
+	
+	
+	
 
 ! !
 
