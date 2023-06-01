@@ -1,0 +1,1783 @@
+
+
+----STARTUP---- (1 June 2023 10:59:19) as C:\Users\Usuario\Desktop\Exactas\Inge1\cuis4\windows64\CuisUniversity-5799.image!
+
+
+----End fileIn of C:\Users\Usuario\Downloads\Portfolio-Solucion (2).st----!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:09:51'!
+test01EmptyAccountReportReturnsZeroBalance
+
+	|acc1 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Balance = 0'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.! !
+
+!methodRemoval: ReportTest #test01 stamp: 'AG 6/1/2023 11:09:51'!
+test01
+
+	|acc1 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Balance = 0'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:11:30'!
+test01AccountSummaryOfEmptyReceptiveAccountReturnsZeroBalance
+
+	|acc1 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Balance = 0'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.! !
+
+!methodRemoval: ReportTest #test01EmptyAccountReportReturnsZeroBalance stamp: 'AG 6/1/2023 11:11:30'!
+test01EmptyAccountReportReturnsZeroBalance
+
+	|acc1 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Balance = 0'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:12:58'!
+test02AddDepositToReceptiveAccountAffectsAccountSummary
+
+	|acc1 reporte|
+	
+	acc1 := ReceptiveAccount new register: (Deposit for: 50).	
+	reporte := OrderedCollection new.
+	reporte add: 'Depósito por 50.'.
+	reporte add: 'Balance = 50'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.! !
+
+!methodRemoval: ReportTest #test02 stamp: 'AG 6/1/2023 11:12:58'!
+test02
+
+	|acc1 reporte|
+	
+	acc1 := ReceptiveAccount new register: (Deposit for: 50).	
+	reporte := OrderedCollection new.
+	reporte add: 'Depósito por 50.'.
+	reporte add: 'Balance = 50'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:13:33'!
+test03AddWithdrawToReceptiveAccountAffectsAccountSummary
+
+	|acc1 reporte|
+	
+	acc1 := ReceptiveAccount new register: (Withdraw for: 100).	
+	reporte := OrderedCollection new.
+	reporte add: 'Extracción por 100.'.
+	reporte add: 'Balance = -100'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.! !
+
+!methodRemoval: ReportTest #test03 stamp: 'AG 6/1/2023 11:13:33'!
+test03
+
+	|acc1 reporte|
+	
+	acc1 := ReceptiveAccount new register: (Withdraw for: 100).	
+	reporte := OrderedCollection new.
+	reporte add: 'Extracción por 100.'.
+	reporte add: 'Balance = -100'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:14:41'!
+test04TransferFromReceptiveAccountIsAddedToSummaryAsTransferOut
+
+	|acc1 acc2 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 20 from: acc1 to: acc2.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Salida por transferencia de 20.'.
+	reporte add: 'Balance = -20'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.! !
+
+!methodRemoval: ReportTest #test04 stamp: 'AG 6/1/2023 11:14:41'!
+test04
+
+	|acc1 acc2 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 20 from: acc1 to: acc2.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Salida por transferencia de 20.'.
+	reporte add: 'Balance = -20'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:14:59'!
+test05TransferFromReceptiveAccountIsAddedToSummaryAsTransferIn
+
+	|acc1 acc2 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 30 from: acc2 to: acc1.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Entrada por transferencia de 30.'.
+	reporte add: 'Balance = 30'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.! !
+
+!methodRemoval: ReportTest #test05 stamp: 'AG 6/1/2023 11:14:59'!
+test05
+
+	|acc1 acc2 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 30 from: acc2 to: acc1.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Entrada por transferencia de 30.'.
+	reporte add: 'Balance = 30'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:15:59'!
+test06ManyTransactionsAreAddedToAccountSummaryInOrder
+
+	|acc1 acc2 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	
+	acc1 register: (Deposit for: 100).
+	acc1 register: (Withdraw for: 50).
+	
+	Transfer with: 20 from: acc1 to: acc2.
+	Transfer with: 30 from: acc2 to: acc1.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Depósito por 100.'.
+	reporte add: 'Extracción por 50.'.
+	reporte add: 'Salida por transferencia de 20.'.
+	reporte add: 'Entrada por transferencia de 30.'.
+	reporte add: 'Balance = 60'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.! !
+
+!methodRemoval: ReportTest #test06 stamp: 'AG 6/1/2023 11:15:59'!
+test06
+
+	|acc1 acc2 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	
+	acc1 register: (Deposit for: 100).
+	acc1 register: (Withdraw for: 50).
+	
+	Transfer with: 20 from: acc1 to: acc2.
+	Transfer with: 30 from: acc2 to: acc1.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Depósito por 100.'.
+	reporte add: 'Extracción por 50.'.
+	reporte add: 'Salida por transferencia de 20.'.
+	reporte add: 'Entrada por transferencia de 30.'.
+	reporte add: 'Balance = 60'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:16:34'!
+test07TransferNetOfNewReceotiveAccountEqualsZero
+
+	|acc1|
+	
+	acc1 := ReceptiveAccount new.	
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: 0.! !
+
+!methodRemoval: ReportTest #test07 stamp: 'AG 6/1/2023 11:16:34'!
+test07
+
+	|acc1|
+	
+	acc1 := ReceptiveAccount new.	
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: 0.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:16:40'!
+test07TransferNetOfNewReceptiveAccountEqualsZero
+
+	|acc1|
+	
+	acc1 := ReceptiveAccount new.	
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: 0.! !
+
+!methodRemoval: ReportTest #test07TransferNetOfNewReceotiveAccountEqualsZero stamp: 'AG 6/1/2023 11:16:40'!
+test07TransferNetOfNewReceotiveAccountEqualsZero
+
+	|acc1|
+	
+	acc1 := ReceptiveAccount new.	
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: 0.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:18:17'!
+test08TransferInSumsItsValueToTransferNet
+
+	|acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 30 from: acc2 to: acc1.
+	
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: 30.! !
+
+!methodRemoval: ReportTest #test08 stamp: 'AG 6/1/2023 11:18:17'!
+test08
+
+	|acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 30 from: acc2 to: acc1.
+	
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: 30.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:18:55'!
+test09TransferOutSubstractsItsValueToTransferNet
+
+	|acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 30 from: acc1 to: acc2.
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: -30.! !
+
+!methodRemoval: ReportTest #test09 stamp: 'AG 6/1/2023 11:18:55'!
+test09
+
+	|acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 30 from: acc1 to: acc2.
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: -30.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:19:39'!
+test10DepositAndWithdrawDontAffectTransferNet
+
+	|acc1 |
+	
+	acc1 := ReceptiveAccount new.	
+	acc1 register: (Deposit for: 50).
+	acc1 register: (Withdraw for: 100).
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: 0.! !
+
+!methodRemoval: ReportTest #test10 stamp: 'AG 6/1/2023 11:19:39'!
+test10
+
+	|acc1 |
+	
+	acc1 := ReceptiveAccount new.	
+	acc1 register: (Deposit for: 50).
+	acc1 register: (Withdraw for: 100).
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: 0.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:20:21'!
+test11ManyTransferAffectTransferNet
+
+	|acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 30 from: acc1 to: acc2.
+	Transfer with: 50 from: acc1 to: acc2.
+	Transfer with: 20 from: acc2 to: acc1.
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: -60.! !
+
+!methodRemoval: ReportTest #test11 stamp: 'AG 6/1/2023 11:20:22'!
+test11
+
+	|acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 30 from: acc1 to: acc2.
+	Transfer with: 50 from: acc1 to: acc2.
+	Transfer with: 20 from: acc2 to: acc1.
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: -60.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:20:28'!
+test11ManyTransfersAffectTransferNet
+
+	|acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 30 from: acc1 to: acc2.
+	Transfer with: 50 from: acc1 to: acc2.
+	Transfer with: 20 from: acc2 to: acc1.
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: -60.! !
+
+!methodRemoval: ReportTest #test11ManyTransferAffectTransferNet stamp: 'AG 6/1/2023 11:20:28'!
+test11ManyTransferAffectTransferNet
+
+	|acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 30 from: acc1 to: acc2.
+	Transfer with: 50 from: acc1 to: acc2.
+	Transfer with: 20 from: acc2 to: acc1.
+	
+	self assert: (TransferNetReporter for: acc1) transferNet equals: -60.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:25:46'!
+test12PortfolioReportHasItsAccountsTransactionsAndPortfolioBalance
+
+	|portfolio acc1 acc2 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	
+	acc1 register: (Deposit for: 100).
+	acc1 register: (Withdraw for: 50).
+	
+	Transfer with: 20 from: acc1 to: acc2.
+	Transfer with: 30 from: acc2 to: acc1.
+	
+	portfolio := Portfolio with: acc1.
+	portfolio add: acc2.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Depósito por 100.'.
+	reporte add: 'Extracción por 50.'.
+	reporte add: 'Salida por transferencia de 20.'.
+	reporte add: 'Entrada por transferencia de 30.'.
+	reporte add: 'Entrada por transferencia de 20.'.
+	reporte add: 'Salida por transferencia de 30.'.
+	reporte add: 'Balance = 50'.
+	
+	self assert: (AccountSummaryReporter for: portfolio) accountSummary equals: reporte.! !
+
+!methodRemoval: ReportTest #test12 stamp: 'AG 6/1/2023 11:25:46'!
+test12
+
+	|portfolio acc1 acc2 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	
+	acc1 register: (Deposit for: 100).
+	acc1 register: (Withdraw for: 50).
+	
+	Transfer with: 20 from: acc1 to: acc2.
+	Transfer with: 30 from: acc2 to: acc1.
+	
+	portfolio := Portfolio with: acc1.
+	portfolio add: acc2.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Depósito por 100.'.
+	reporte add: 'Extracción por 50.'.
+	reporte add: 'Salida por transferencia de 20.'.
+	reporte add: 'Entrada por transferencia de 30.'.
+	reporte add: 'Entrada por transferencia de 20.'.
+	reporte add: 'Salida por transferencia de 30.'.
+	reporte add: 'Balance = 50'.
+	
+	self assert: (AccountSummaryReporter for: portfolio) accountSummary equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:26:30'!
+test13TreeReporterOfEmptyPortfolioHasPortfolioName
+
+	|portfolio reporte|
+	
+	
+	portfolio := Portfolio named: 'Portfolio sin cuentas'.
+	
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio sin cuentas'.
+	
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.! !
+
+!methodRemoval: ReportTest #test13 stamp: 'AG 6/1/2023 11:26:30'!
+test13
+
+	|portfolio reporte|
+	
+	
+	portfolio := Portfolio named: 'Portfolio sin cuentas'.
+	
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio sin cuentas'.
+	
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:27:26'!
+test14TreeReporterOFPortfolioHasPortfolioNameAndAccountsName
+
+	|portfolio acc1 acc2 reporte |
+	
+	
+	portfolio := Portfolio named: 'Portfolio con cuentas'.
+	acc1 := ReceptiveAccount named: 'Cuenta de juan'.	
+	acc2 := ReceptiveAccount named: 'Cuenta de Maria'.
+	portfolio add: acc1.
+	portfolio add: acc2.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio con cuentas'.
+	
+	reporte add: (' ', acc1 name).
+	reporte add: (' ' , acc2 name).
+	
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.! !
+
+!methodRemoval: ReportTest #test14 stamp: 'AG 6/1/2023 11:27:26'!
+test14
+
+	|portfolio acc1 acc2 reporte |
+	
+	
+	portfolio := Portfolio named: 'Portfolio con cuentas'.
+	acc1 := ReceptiveAccount named: 'Cuenta de juan'.	
+	acc2 := ReceptiveAccount named: 'Cuenta de Maria'.
+	portfolio add: acc1.
+	portfolio add: acc2.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio con cuentas'.
+	
+	reporte add: (' ', acc1 name).
+	reporte add: (' ' , acc2 name).
+	
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:28:47'!
+test13NameTreeReporterOfEmptyPortfolioHasPortfolioName
+
+	|portfolio reporte|
+	
+	
+	portfolio := Portfolio named: 'Portfolio sin cuentas'.
+	
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio sin cuentas'.
+	
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.! !
+
+!methodRemoval: ReportTest #test13TreeReporterOfEmptyPortfolioHasPortfolioName stamp: 'AG 6/1/2023 11:28:47'!
+test13TreeReporterOfEmptyPortfolioHasPortfolioName
+
+	|portfolio reporte|
+	
+	
+	portfolio := Portfolio named: 'Portfolio sin cuentas'.
+	
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio sin cuentas'.
+	
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:29:14'!
+test14NameTreeReporterOfPortfolioHasPortfolioNameAndAccountsName
+
+	|portfolio acc1 acc2 reporte |
+	
+	
+	portfolio := Portfolio named: 'Portfolio con cuentas'.
+	acc1 := ReceptiveAccount named: 'Cuenta de juan'.	
+	acc2 := ReceptiveAccount named: 'Cuenta de Maria'.
+	portfolio add: acc1.
+	portfolio add: acc2.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio con cuentas'.
+	
+	reporte add: (' ', acc1 name).
+	reporte add: (' ' , acc2 name).
+	
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.! !
+
+!methodRemoval: ReportTest #test14TreeReporterOFPortfolioHasPortfolioNameAndAccountsName stamp: 'AG 6/1/2023 11:29:14'!
+test14TreeReporterOFPortfolioHasPortfolioNameAndAccountsName
+
+	|portfolio acc1 acc2 reporte |
+	
+	
+	portfolio := Portfolio named: 'Portfolio con cuentas'.
+	acc1 := ReceptiveAccount named: 'Cuenta de juan'.	
+	acc2 := ReceptiveAccount named: 'Cuenta de Maria'.
+	portfolio add: acc1.
+	portfolio add: acc2.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio con cuentas'.
+	
+	reporte add: (' ', acc1 name).
+	reporte add: (' ' , acc2 name).
+	
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:32:24'!
+test15NameTreeReporterIdentsAsTree
+
+	|portfolio portfolioHijo acc1 reporte|
+	
+	
+	portfolio := Portfolio named: 'Portfolio con cuentas'.
+	portfolioHijo := Portfolio named: 'Portfolio hijo de cuentas'.
+	acc1 := ReceptiveAccount named: 'Cuenta de juan'.	
+	
+	portfolioHijo add: acc1.
+	portfolio add: portfolioHijo .
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio con cuentas'.	
+	reporte add: ' Portfolio hijo de cuentas'.	
+	reporte add: '  Cuenta de juan'.
+		
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.! !
+
+!methodRemoval: ReportTest #test15 stamp: 'AG 6/1/2023 11:32:24'!
+test15
+
+	|portfolio portfolioHijo acc1 reporte|
+	
+	
+	portfolio := Portfolio named: 'Portfolio con cuentas'.
+	portfolioHijo := Portfolio named: 'Portfolio hijo de cuentas'.
+	acc1 := ReceptiveAccount named: 'Cuenta de juan'.	
+	
+	portfolioHijo add: acc1.
+	portfolio add: portfolioHijo .
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio con cuentas'.	
+	reporte add: ' Portfolio hijo de cuentas'.	
+	reporte add: '  Cuenta de juan'.
+		
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:32:38'!
+test15NameTreeReporterIdentsAsTreeDepthsIncreases
+
+	|portfolio portfolioHijo acc1 reporte|
+	
+	
+	portfolio := Portfolio named: 'Portfolio con cuentas'.
+	portfolioHijo := Portfolio named: 'Portfolio hijo de cuentas'.
+	acc1 := ReceptiveAccount named: 'Cuenta de juan'.	
+	
+	portfolioHijo add: acc1.
+	portfolio add: portfolioHijo .
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio con cuentas'.	
+	reporte add: ' Portfolio hijo de cuentas'.	
+	reporte add: '  Cuenta de juan'.
+		
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.! !
+
+!methodRemoval: ReportTest #test15NameTreeReporterIdentsAsTree stamp: 'AG 6/1/2023 11:32:38'!
+test15NameTreeReporterIdentsAsTree
+
+	|portfolio portfolioHijo acc1 reporte|
+	
+	
+	portfolio := Portfolio named: 'Portfolio con cuentas'.
+	portfolioHijo := Portfolio named: 'Portfolio hijo de cuentas'.
+	acc1 := ReceptiveAccount named: 'Cuenta de juan'.	
+	
+	portfolioHijo add: acc1.
+	portfolio add: portfolioHijo .
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio con cuentas'.	
+	reporte add: ' Portfolio hijo de cuentas'.	
+	reporte add: '  Cuenta de juan'.
+		
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:32:50'!
+test15NameTreeReporterIdentsAsTreeDepthIncreases
+
+	|portfolio portfolioHijo acc1 reporte|
+	
+	
+	portfolio := Portfolio named: 'Portfolio con cuentas'.
+	portfolioHijo := Portfolio named: 'Portfolio hijo de cuentas'.
+	acc1 := ReceptiveAccount named: 'Cuenta de juan'.	
+	
+	portfolioHijo add: acc1.
+	portfolio add: portfolioHijo .
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio con cuentas'.	
+	reporte add: ' Portfolio hijo de cuentas'.	
+	reporte add: '  Cuenta de juan'.
+		
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.! !
+
+!methodRemoval: ReportTest #test15NameTreeReporterIdentsAsTreeDepthsIncreases stamp: 'AG 6/1/2023 11:32:50'!
+test15NameTreeReporterIdentsAsTreeDepthsIncreases
+
+	|portfolio portfolioHijo acc1 reporte|
+	
+	
+	portfolio := Portfolio named: 'Portfolio con cuentas'.
+	portfolioHijo := Portfolio named: 'Portfolio hijo de cuentas'.
+	acc1 := ReceptiveAccount named: 'Cuenta de juan'.	
+	
+	portfolioHijo add: acc1.
+	portfolio add: portfolioHijo .
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio con cuentas'.	
+	reporte add: ' Portfolio hijo de cuentas'.	
+	reporte add: '  Cuenta de juan'.
+		
+	
+	self assert: (AccountNameTreeReporter for: portfolio) accountNameTree equals: reporte.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:33:38'!
+test16TreeReporterHasAccountsTransactions
+
+	|portfolio portfolioChild acc1 acc2 reporte|
+	
+	portfolio := Portfolio named: 'Portfolio familiar'.
+	portfolioChild := Portfolio named: 'Portfolio de Maria'.
+	
+	acc1 := ReceptiveAccount named: 'Cuenta de juan'.		
+	acc1 register: (Deposit for: 250).
+	acc1 register: (Withdraw for: 50).
+	
+	acc2 := ReceptiveAccount named: 'Cuenta de Maria'.		
+	Transfer with: 80 from: acc1 to: acc2.
+	
+	portfolio add: acc1 .
+	portfolio add: portfolioChild .
+	portfolioChild add: acc2.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio familiar'.		
+	reporte add: ' Cuenta de juan'.
+	reporte add: '  Depósito por 250.'.	
+	reporte add: '  Extracción por 50.'.			
+	reporte add: '  Salida por transferencia de 80.'.		
+	reporte add: '  Balance = 120'.		
+	reporte add: ' Portfolio de Maria'.		
+	reporte add: '  Cuenta de Maria'.
+	reporte add: '   Entrada por transferencia de 80.'.	
+	reporte add: '   Balance = 80'.		
+	
+	self assert: (AccountTransactionsTreeReporter for: portfolio) accountTransactionsTree equals: reporte.
+	
+	! !
+
+!methodRemoval: ReportTest #test16 stamp: 'AG 6/1/2023 11:33:38'!
+test16
+
+	|portfolio portfolioChild acc1 acc2 reporte|
+	
+	portfolio := Portfolio named: 'Portfolio familiar'.
+	portfolioChild := Portfolio named: 'Portfolio de Maria'.
+	
+	acc1 := ReceptiveAccount named: 'Cuenta de juan'.		
+	acc1 register: (Deposit for: 250).
+	acc1 register: (Withdraw for: 50).
+	
+	acc2 := ReceptiveAccount named: 'Cuenta de Maria'.		
+	Transfer with: 80 from: acc1 to: acc2.
+	
+	portfolio add: acc1 .
+	portfolio add: portfolioChild .
+	portfolioChild add: acc2.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Portfolio familiar'.		
+	reporte add: ' Cuenta de juan'.
+	reporte add: '  Depósito por 250.'.	
+	reporte add: '  Extracción por 50.'.			
+	reporte add: '  Salida por transferencia de 80.'.		
+	reporte add: '  Balance = 120'.		
+	reporte add: ' Portfolio de Maria'.		
+	reporte add: '  Cuenta de Maria'.
+	reporte add: '   Entrada por transferencia de 80.'.	
+	reporte add: '   Balance = 80'.		
+	
+	self assert: (AccountTransactionsTreeReporter for: portfolio) accountTransactionsTree equals: reporte.
+	
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:34:18'!
+test05TransferToReceptiveAccountIsAddedToSummaryAsTransferIn
+
+	|acc1 acc2 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 30 from: acc2 to: acc1.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Entrada por transferencia de 30.'.
+	reporte add: 'Balance = 30'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.! !
+
+!methodRemoval: ReportTest #test05TransferFromReceptiveAccountIsAddedToSummaryAsTransferIn stamp: 'AG 6/1/2023 11:34:18'!
+test05TransferFromReceptiveAccountIsAddedToSummaryAsTransferIn
+
+	|acc1 acc2 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	acc2 := ReceptiveAccount new.
+	Transfer with: 30 from: acc2 to: acc1.
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Entrada por transferencia de 30.'.
+	reporte add: 'Balance = 30'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:50:53'!
+test01TransferToAccountAffectsBalance
+
+	|transfer acc1 acc2|
+	
+	acc1 := ReceptiveAccount new register:(Deposit for: 150).
+	acc2 := ReceptiveAccount new.
+	transfer := Transfer with: 50 from: acc1 to: acc2.
+	
+	self assert: acc1 balance equals: 100.
+	self assert: acc2 balance equals: 50.
+	! !
+
+!methodRemoval: TransferTest #test01TransferToAccount stamp: 'AG 6/1/2023 11:50:53'!
+test01TransferToAccount
+
+	|transfer acc1 acc2|
+	
+	acc1 := ReceptiveAccount new register:(Deposit for: 150).
+	acc2 := ReceptiveAccount new.
+	transfer := Transfer with: 50 from: acc1 to: acc2.
+	
+	self assert: acc1 balance equals: 100.
+	self assert: acc2 balance equals: 50.
+	!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:51:08'!
+test02TransferKnowsItsValue
+
+	|transfer acc1 acc2|
+	
+	acc1 := ReceptiveAccount new register:(Deposit for: 150).
+	acc2 := ReceptiveAccount new.
+	transfer := Transfer with: 50 from: acc1 to: acc2.
+	
+	self assert: transfer value equals: 50.
+	! !
+
+!methodRemoval: TransferTest #test02 stamp: 'AG 6/1/2023 11:51:08'!
+test02
+
+	|transfer acc1 acc2|
+	
+	acc1 := ReceptiveAccount new register:(Deposit for: 150).
+	acc2 := ReceptiveAccount new.
+	transfer := Transfer with: 50 from: acc1 to: acc2.
+	
+	self assert: transfer value equals: 50.
+	!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:51:54'!
+test03TransferKnowsItsCounterPart
+
+	|transactionOut transactionIn acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.
+	acc2 := ReceptiveAccount new.
+	Transfer with: 50 from: acc1 to: acc2.
+		
+	transactionOut := acc1 transactions first. 
+	transactionIn := acc2 transactions first.
+	
+	self assert: transactionOut counterPart equals: transactionIn.
+	! !
+
+!methodRemoval: TransferTest #test03 stamp: 'AG 6/1/2023 11:51:54'!
+test03
+
+	|transactionOut transactionIn acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.
+	acc2 := ReceptiveAccount new.
+	Transfer with: 50 from: acc1 to: acc2.
+		
+	transactionOut := acc1 transactions first. 
+	transactionIn := acc2 transactions first.
+	
+	self assert: transactionOut counterPart equals: transactionIn.
+	!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:52:35'!
+test03TransferOutCounterPartIsTransferIn
+
+	|transactionOut transactionIn acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.
+	acc2 := ReceptiveAccount new.
+	Transfer with: 50 from: acc1 to: acc2.
+		
+	transactionOut := acc1 transactions first. 
+	transactionIn := acc2 transactions first.
+	
+	self assert: transactionOut counterPart equals: transactionIn.
+	! !
+
+!methodRemoval: TransferTest #test03TransferKnowsItsCounterPart stamp: 'AG 6/1/2023 11:52:36'!
+test03TransferKnowsItsCounterPart
+
+	|transactionOut transactionIn acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.
+	acc2 := ReceptiveAccount new.
+	Transfer with: 50 from: acc1 to: acc2.
+		
+	transactionOut := acc1 transactions first. 
+	transactionIn := acc2 transactions first.
+	
+	self assert: transactionOut counterPart equals: transactionIn.
+	!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:53:03'!
+test04TransferInCounterPartIsTransferOut
+
+	|transactionOut transactionIn acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.
+	acc2 := ReceptiveAccount new.
+	Transfer with: 50 from: acc1 to: acc2.
+		
+	transactionOut := acc1 transactions first. 
+	transactionIn := acc2 transactions first.
+	
+	self assert: transactionIn counterPart equals: transactionOut.
+	! !
+
+!methodRemoval: TransferTest #test04 stamp: 'AG 6/1/2023 11:53:03'!
+test04
+
+	|transactionOut transactionIn acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.
+	acc2 := ReceptiveAccount new.
+	Transfer with: 50 from: acc1 to: acc2.
+		
+	transactionOut := acc1 transactions first. 
+	transactionIn := acc2 transactions first.
+	
+	self assert: transactionIn counterPart equals: transactionOut.
+	!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 11:53:42'!
+test05ZeroValueTransferShouldRaiseInvalidAmmountError
+
+	|acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.
+	acc2 := ReceptiveAccount new.
+	
+	self 
+		should: [Transfer with: 0 from: acc1 to: acc2.]
+		raise: Error
+		withExceptionDo: [:error | 
+			self assert: Transfer invalidAmountErrorDescription equals: error messageText.].
+	
+	! !
+
+!methodRemoval: TransferTest #test05 stamp: 'AG 6/1/2023 11:53:42'!
+test05
+
+	|acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.
+	acc2 := ReceptiveAccount new.
+	
+	self 
+		should: [Transfer with: 0 from: acc1 to: acc2.]
+		raise: Error
+		withExceptionDo: [:error | 
+			self assert: Transfer invalidAmountErrorDescription equals: error messageText.].
+	
+	!
+!TransferTest methodsFor: 'testing' stamp: 'AG 6/1/2023 11:57:05'!
+receptiveAccountWith150Deposit
+
+	^ ReceptiveAccount new register:(Deposit for: 150)! !
+!TransferTest methodsFor: 'testing' stamp: 'AG 6/1/2023 11:57:05' prior: 50618082!
+test01TransferToAccountAffectsBalance
+
+	|transfer acc1 acc2|
+	
+	acc1 := self receptiveAccountWith150Deposit.
+	acc2 := ReceptiveAccount new.
+	transfer := Transfer with: 50 from: acc1 to: acc2.
+	
+	self assert: acc1 balance equals: 100.
+	self assert: acc2 balance equals: 50.
+	! !
+!TransferTest methodsFor: 'testing' stamp: 'AG 6/1/2023 11:57:05' prior: 50618105!
+test02TransferKnowsItsValue
+
+	|transfer acc1 acc2|
+	
+	acc1 := self receptiveAccountWith150Deposit.
+	acc2 := ReceptiveAccount new.
+	transfer := Transfer with: 50 from: acc1 to: acc2.
+	
+	self assert: transfer value equals: 50.
+	! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyReceptiveAccountReturnsZeroBalance stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test02AddDepositToReceptiveAccountAffectsAccountSummary stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test03AddWithdrawToReceptiveAccountAffectsAccountSummary stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test04TransferFromReceptiveAccountIsAddedToSummaryAsTransferOut stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferToReceptiveAccountIsAddedToSummaryAsTransferIn stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test06ManyTransactionsAreAddedToAccountSummaryInOrder stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfNewReceptiveAccountEqualsZero stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferInSumsItsValueToTransferNet stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferOutSubstractsItsValueToTransferNet stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test10DepositAndWithdrawDontAffectTransferNet stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test11ManyTransfersAffectTransferNet stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioReportHasItsAccountsTransactionsAndPortfolioBalance stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test13NameTreeReporterOfEmptyPortfolioHasPortfolioName stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test14NameTreeReporterOfPortfolioHasPortfolioNameAndAccountsName stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test15NameTreeReporterIdentsAsTreeDepthIncreases stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReportTest #test16TreeReporterHasAccountsTransactions stamp: 'AG 6/1/2023 12:04:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AG 6/1/2023 12:05:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AG 6/1/2023 12:05:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AG 6/1/2023 12:05:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AG 6/1/2023 12:05:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AG 6/1/2023 12:05:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AG 6/1/2023 12:05:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AG 6/1/2023 12:05:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08AccountKnowsItsName stamp: 'AG 6/1/2023 12:05:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioKnowsItsName stamp: 'AG 6/1/2023 12:05:04'!
+PASSED!
+
+----SNAPSHOT----(1 June 2023 12:06:05) CuisUniversity-5799.image priorSource: 9222790!
+!AccountNameTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:24:13'!
+increaseTabsCounter
+	
+	tabsCounter := tabsCounter + 1.
+			
+	! !
+!AccountNameTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:24:29' prior: 50617158 overrides: 50617124!
+executeForPortfolioOf: aPortfolio  
+	
+	currentReport add: (self actualLeftPadding , aPortfolio name).
+	
+	self increaseTabsCounter.
+			
+	aPortfolio executeOnChildsAccountsFor: self.
+	
+	self increaseTabsCounter.
+	! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyReceptiveAccountReturnsZeroBalance stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test02AddDepositToReceptiveAccountAffectsAccountSummary stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test03AddWithdrawToReceptiveAccountAffectsAccountSummary stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test04TransferFromReceptiveAccountIsAddedToSummaryAsTransferOut stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferToReceptiveAccountIsAddedToSummaryAsTransferIn stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test06ManyTransactionsAreAddedToAccountSummaryInOrder stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfNewReceptiveAccountEqualsZero stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferInSumsItsValueToTransferNet stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferOutSubstractsItsValueToTransferNet stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test10DepositAndWithdrawDontAffectTransferNet stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test11ManyTransfersAffectTransferNet stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioReportHasItsAccountsTransactionsAndPortfolioBalance stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test13NameTreeReporterOfEmptyPortfolioHasPortfolioName stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test14NameTreeReporterOfPortfolioHasPortfolioNameAndAccountsName stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test15NameTreeReporterIdentsAsTreeDepthIncreases stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+
+!testRun: #ReportTest #test16TreeReporterHasAccountsTransactions stamp: 'AG 6/1/2023 12:24:32'!
+PASSED!
+!AccountNameTreeReporter methodsFor: 'tabs padding' stamp: 'AG 6/1/2023 12:25:27'!
+incrementTabsCounter
+	
+	tabsCounter := tabsCounter + 1.
+			
+	! !
+!AccountNameTreeReporter methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 12:25:27' prior: 50618413 overrides: 50617124!
+executeForPortfolioOf: aPortfolio  
+	
+	currentReport add: (self actualLeftPadding , aPortfolio name).
+	
+	self incrementTabsCounter.
+			
+	aPortfolio executeOnChildsAccountsFor: self.
+	
+	self incrementTabsCounter.
+	! !
+
+!methodRemoval: AccountNameTreeReporter #increaseTabsCounter stamp: 'AG 6/1/2023 12:25:27'!
+increaseTabsCounter
+	
+	tabsCounter := tabsCounter + 1.
+			
+	!
+!AccountNameTreeReporter methodsFor: 'tabs padding' stamp: 'AG 6/1/2023 12:25:54'!
+incrementTabCounter
+	
+	tabsCounter := tabsCounter + 1.
+			
+	! !
+!AccountNameTreeReporter methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 12:25:54' prior: 50618487 overrides: 50617124!
+executeForPortfolioOf: aPortfolio  
+	
+	currentReport add: (self actualLeftPadding , aPortfolio name).
+	
+	self incrementTabCounter.
+			
+	aPortfolio executeOnChildsAccountsFor: self.
+	
+	self incrementTabCounter.
+	! !
+
+!methodRemoval: AccountNameTreeReporter #incrementTabsCounter stamp: 'AG 6/1/2023 12:25:54'!
+incrementTabsCounter
+	
+	tabsCounter := tabsCounter + 1.
+			
+	!
+!AccountSummaryReporter methodsFor: 'accountSummary' stamp: 'AG 6/1/2023 12:36:05'!
+addBalanceToCurrentReport
+
+	^ currentReport add: ('Balance = ', account balance asString )! !
+!AccountSummaryReporter methodsFor: 'accountSummary' stamp: 'AG 6/1/2023 12:36:05' prior: 50617000!
+accountSummary
+	
+	currentReport := OrderedCollection new.
+	account executeOnTransactionsFor: self.
+	self addBalanceToCurrentReport.
+	
+	^currentReport! !
+!AccountNameTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:38:46'!
+addToCurrentReport: aReceptiveAccount
+
+	^ currentReport add: (self actualLeftPadding , aReceptiveAccount name)! !
+!AccountNameTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:38:46' prior: 50617169 overrides: 50617129!
+executeForReceptiveAccountOf: aReceptiveAccount  
+	
+	self addToCurrentReport: aReceptiveAccount.
+	! !
+!AccountNameTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:39:10' prior: 50618538!
+addToCurrentReport: anAccount
+
+	^ currentReport add: (self actualLeftPadding , anAccount name)! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyReceptiveAccountReturnsZeroBalance stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test02AddDepositToReceptiveAccountAffectsAccountSummary stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test03AddWithdrawToReceptiveAccountAffectsAccountSummary stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test04TransferFromReceptiveAccountIsAddedToSummaryAsTransferOut stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferToReceptiveAccountIsAddedToSummaryAsTransferIn stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test06ManyTransactionsAreAddedToAccountSummaryInOrder stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfNewReceptiveAccountEqualsZero stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferInSumsItsValueToTransferNet stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferOutSubstractsItsValueToTransferNet stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test10DepositAndWithdrawDontAffectTransferNet stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test11ManyTransfersAffectTransferNet stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioReportHasItsAccountsTransactionsAndPortfolioBalance stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test13NameTreeReporterOfEmptyPortfolioHasPortfolioName stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test14NameTreeReporterOfPortfolioHasPortfolioNameAndAccountsName stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test15NameTreeReporterIdentsAsTreeDepthIncreases stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+
+!testRun: #ReportTest #test16TreeReporterHasAccountsTransactions stamp: 'AG 6/1/2023 12:39:17'!
+PASSED!
+!AccountNameTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:39:46' prior: 50618508 overrides: 50617124!
+executeForPortfolioOf: aPortfolio  
+	
+	self addToCurrentReport: aPortfolio.
+	
+	self incrementTabCounter.
+			
+	aPortfolio executeOnChildsAccountsFor: self.
+	
+	self incrementTabCounter.
+	! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyReceptiveAccountReturnsZeroBalance stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test02AddDepositToReceptiveAccountAffectsAccountSummary stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test03AddWithdrawToReceptiveAccountAffectsAccountSummary stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test04TransferFromReceptiveAccountIsAddedToSummaryAsTransferOut stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferToReceptiveAccountIsAddedToSummaryAsTransferIn stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test06ManyTransactionsAreAddedToAccountSummaryInOrder stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfNewReceptiveAccountEqualsZero stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferInSumsItsValueToTransferNet stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferOutSubstractsItsValueToTransferNet stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test10DepositAndWithdrawDontAffectTransferNet stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test11ManyTransfersAffectTransferNet stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioReportHasItsAccountsTransactionsAndPortfolioBalance stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test13NameTreeReporterOfEmptyPortfolioHasPortfolioName stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test14NameTreeReporterOfPortfolioHasPortfolioNameAndAccountsName stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test15NameTreeReporterIdentsAsTreeDepthIncreases stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+
+!testRun: #ReportTest #test16TreeReporterHasAccountsTransactions stamp: 'AG 6/1/2023 12:39:50'!
+PASSED!
+!AccountTransactionsTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:41:20'!
+addToCurrentReport: aReceptiveAccount
+
+	^ currentReport add: (self actualLeftPadding , aReceptiveAccount name)! !
+!AccountTransactionsTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:41:20' prior: 50617240 overrides: 50617129!
+executeForReceptiveAccountOf: aReceptiveAccount  
+	|reporteTransactions|
+	
+	self addToCurrentReport: aReceptiveAccount.
+	
+	self incrementTabCounter .
+	
+	reporteTransactions := (AccountSummaryReporter for: aReceptiveAccount ) accountSummary .
+	
+	reporteTransactions do: [:message | currentReport add: (self actualLeftPadding , message)].
+	
+	self decreseTabCounter .! !
+!AccountTransactionsTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:42:15' prior: 50618693 overrides: 50617129!
+executeForReceptiveAccountOf: aReceptiveAccount  
+	|reporteTransactions|
+	
+	self addToCurrentReport: aReceptiveAccount.
+	
+	self incrementTabCounter .
+	
+	reporteTransactions := (AccountSummaryReporter for: aReceptiveAccount ) accountSummary .
+	
+	reporteTransactions do: [:message | currentReport add: (self addToCurrentReport: message)].
+	
+	self decreseTabCounter .! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyReceptiveAccountReturnsZeroBalance stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test02AddDepositToReceptiveAccountAffectsAccountSummary stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test03AddWithdrawToReceptiveAccountAffectsAccountSummary stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test04TransferFromReceptiveAccountIsAddedToSummaryAsTransferOut stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferToReceptiveAccountIsAddedToSummaryAsTransferIn stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test06ManyTransactionsAreAddedToAccountSummaryInOrder stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfNewReceptiveAccountEqualsZero stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferInSumsItsValueToTransferNet stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferOutSubstractsItsValueToTransferNet stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test10DepositAndWithdrawDontAffectTransferNet stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test11ManyTransfersAffectTransferNet stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioReportHasItsAccountsTransactionsAndPortfolioBalance stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test13NameTreeReporterOfEmptyPortfolioHasPortfolioName stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test14NameTreeReporterOfPortfolioHasPortfolioNameAndAccountsName stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test15NameTreeReporterIdentsAsTreeDepthIncreases stamp: 'AG 6/1/2023 12:42:24'!
+PASSED!
+
+!testRun: #ReportTest #test16TreeReporterHasAccountsTransactions stamp: 'AG 6/1/2023 12:42:24'!
+FAILURE!
+
+!testRun: #ReportTest #test16TreeReporterHasAccountsTransactions stamp: 'AG 6/1/2023 12:42:24'!
+FAILURE!
+
+----STARTUP---- (1 June 2023 12:43:00) as C:\Users\Usuario\Desktop\Exactas\Inge1\cuis4\windows64\CuisUniversity-5799.image!
+
+!AccountNameTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:24:13'!
+increaseTabsCounter
+	
+	tabsCounter := tabsCounter + 1.
+			
+	! !
+!AccountNameTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:24:29' prior: 50617158 overrides: 50617124!
+executeForPortfolioOf: aPortfolio  
+	
+	currentReport add: (self actualLeftPadding , aPortfolio name).
+	
+	self increaseTabsCounter.
+			
+	aPortfolio executeOnChildsAccountsFor: self.
+	
+	self increaseTabsCounter.
+	! !
+!AccountNameTreeReporter methodsFor: 'tabs padding' stamp: 'AG 6/1/2023 12:25:27'!
+incrementTabsCounter
+	
+	tabsCounter := tabsCounter + 1.
+			
+	! !
+!AccountNameTreeReporter methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 12:25:27' prior: 50618795 overrides: 50617124!
+executeForPortfolioOf: aPortfolio  
+	
+	currentReport add: (self actualLeftPadding , aPortfolio name).
+	
+	self incrementTabsCounter.
+			
+	aPortfolio executeOnChildsAccountsFor: self.
+	
+	self incrementTabsCounter.
+	! !
+
+!methodRemoval: AccountNameTreeReporter #increaseTabsCounter stamp: 'AG 6/1/2023 12:43:04'!
+increaseTabsCounter
+	
+	tabsCounter := tabsCounter + 1.
+			
+	!
+!AccountNameTreeReporter methodsFor: 'tabs padding' stamp: 'AG 6/1/2023 12:25:54'!
+incrementTabCounter
+	
+	tabsCounter := tabsCounter + 1.
+			
+	! !
+!AccountNameTreeReporter methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 12:25:54' prior: 50618811 overrides: 50617124!
+executeForPortfolioOf: aPortfolio  
+	
+	currentReport add: (self actualLeftPadding , aPortfolio name).
+	
+	self incrementTabCounter.
+			
+	aPortfolio executeOnChildsAccountsFor: self.
+	
+	self incrementTabCounter.
+	! !
+
+!methodRemoval: AccountNameTreeReporter #incrementTabsCounter stamp: 'AG 6/1/2023 12:43:04'!
+incrementTabsCounter
+	
+	tabsCounter := tabsCounter + 1.
+			
+	!
+!AccountSummaryReporter methodsFor: 'accountSummary' stamp: 'AG 6/1/2023 12:36:05'!
+addBalanceToCurrentReport
+
+	^ currentReport add: ('Balance = ', account balance asString )! !
+!AccountSummaryReporter methodsFor: 'accountSummary' stamp: 'AG 6/1/2023 12:36:05' prior: 50617000!
+accountSummary
+	
+	currentReport := OrderedCollection new.
+	account executeOnTransactionsFor: self.
+	self addBalanceToCurrentReport.
+	
+	^currentReport! !
+!AccountNameTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:38:46'!
+addToCurrentReport: aReceptiveAccount
+
+	^ currentReport add: (self actualLeftPadding , aReceptiveAccount name)! !
+!AccountNameTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:38:46' prior: 50617169 overrides: 50617129!
+executeForReceptiveAccountOf: aReceptiveAccount  
+	
+	self addToCurrentReport: aReceptiveAccount.
+	! !
+!AccountNameTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:39:10' prior: 50618862!
+addToCurrentReport: anAccount
+
+	^ currentReport add: (self actualLeftPadding , anAccount name)! !
+!AccountNameTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:39:46' prior: 50618832 overrides: 50617124!
+executeForPortfolioOf: aPortfolio  
+	
+	self addToCurrentReport: aPortfolio.
+	
+	self incrementTabCounter.
+			
+	aPortfolio executeOnChildsAccountsFor: self.
+	
+	self incrementTabCounter.
+	! !
+!AccountTransactionsTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:41:20'!
+addToCurrentReport: aReceptiveAccount
+
+	^ currentReport add: (self actualLeftPadding , aReceptiveAccount name)! !
+!AccountTransactionsTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:41:20' prior: 50617240 overrides: 50617129!
+executeForReceptiveAccountOf: aReceptiveAccount  
+	|reporteTransactions|
+	
+	self addToCurrentReport: aReceptiveAccount.
+	
+	self incrementTabCounter .
+	
+	reporteTransactions := (AccountSummaryReporter for: aReceptiveAccount ) accountSummary .
+	
+	reporteTransactions do: [:message | currentReport add: (self actualLeftPadding , message)].
+	
+	self decreseTabCounter .! !
+!AccountTransactionsTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:42:15' prior: 50618901 overrides: 50617129!
+executeForReceptiveAccountOf: aReceptiveAccount  
+	|reporteTransactions|
+	
+	self addToCurrentReport: aReceptiveAccount.
+	
+	self incrementTabCounter .
+	
+	reporteTransactions := (AccountSummaryReporter for: aReceptiveAccount ) accountSummary .
+	
+	reporteTransactions do: [:message | currentReport add: (self addToCurrentReport: message)].
+	
+	self decreseTabCounter .! !
+!AccountTransactionsTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:41:20' prior: 50618917 overrides: 50617129!
+executeForReceptiveAccountOf: aReceptiveAccount  
+	|reporteTransactions|
+	
+	self addToCurrentReport: aReceptiveAccount.
+	
+	self incrementTabCounter .
+	
+	reporteTransactions := (AccountSummaryReporter for: aReceptiveAccount ) accountSummary .
+	
+	reporteTransactions do: [:message | currentReport add: (self actualLeftPadding , message)].
+	
+	self decreseTabCounter .! !
+!AccountTransactionsTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:45:35'!
+addtoCurrentReportMessagesOf: reporteTransactions
+
+	^ reporteTransactions do: [:message | currentReport add: (self actualLeftPadding , message)]! !
+!AccountTransactionsTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:45:35' prior: 50618933 overrides: 50617129!
+executeForReceptiveAccountOf: aReceptiveAccount  
+	|reporteTransactions|
+	
+	self addToCurrentReport: aReceptiveAccount.
+	
+	self incrementTabCounter .
+	
+	reporteTransactions := (AccountSummaryReporter for: aReceptiveAccount ) accountSummary .
+	
+	self addtoCurrentReportMessagesOf: reporteTransactions.
+	
+	self decreseTabCounter .! !
+!AccountTransactionsTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:45:47'!
+addToCurrentReportMessagesOf: reporteTransactions
+
+	^ reporteTransactions do: [:message | currentReport add: (self actualLeftPadding , message)]! !
+!AccountTransactionsTreeReporter methodsFor: 'as yet unclassified' stamp: 'AG 6/1/2023 12:45:47' prior: 50618957 overrides: 50617129!
+executeForReceptiveAccountOf: aReceptiveAccount  
+	|reporteTransactions|
+	
+	self addToCurrentReport: aReceptiveAccount.
+	
+	self incrementTabCounter .
+	
+	reporteTransactions := (AccountSummaryReporter for: aReceptiveAccount ) accountSummary .
+	
+	self addToCurrentReportMessagesOf: reporteTransactions.
+	
+	self decreseTabCounter .! !
+
+!methodRemoval: AccountTransactionsTreeReporter #addtoCurrentReportMessagesOf: stamp: 'AG 6/1/2023 12:45:47'!
+addtoCurrentReportMessagesOf: reporteTransactions
+
+	^ reporteTransactions do: [:message | currentReport add: (self actualLeftPadding , message)]!
+!AccountTransactionsTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 12:46:39' prior: 50617229 overrides: 50617124!
+executeForPortfolioOf: aPortfolio  
+	
+	self addToCurrentReport: aPortfolio .
+	
+	self incrementTabCounter.
+			
+	aPortfolio executeOnChildsAccountsFor: self.
+	
+	self decreseTabCounter.	
+	! !
+
+!testRun: #ReportTest #test01AccountSummaryOfEmptyReceptiveAccountReturnsZeroBalance stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test02AddDepositToReceptiveAccountAffectsAccountSummary stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test03AddWithdrawToReceptiveAccountAffectsAccountSummary stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test04TransferFromReceptiveAccountIsAddedToSummaryAsTransferOut stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test05TransferToReceptiveAccountIsAddedToSummaryAsTransferIn stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test06ManyTransactionsAreAddedToAccountSummaryInOrder stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test07TransferNetOfNewReceptiveAccountEqualsZero stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test08TransferInSumsItsValueToTransferNet stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test09TransferOutSubstractsItsValueToTransferNet stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test10DepositAndWithdrawDontAffectTransferNet stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test11ManyTransfersAffectTransferNet stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioReportHasItsAccountsTransactionsAndPortfolioBalance stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test13NameTreeReporterOfEmptyPortfolioHasPortfolioName stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test14NameTreeReporterOfPortfolioHasPortfolioNameAndAccountsName stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test15NameTreeReporterIdentsAsTreeDepthIncreases stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+
+!testRun: #ReportTest #test16TreeReporterHasAccountsTransactions stamp: 'AG 6/1/2023 12:46:41'!
+PASSED!
+!AccountTransactionsTreeReporter methodsFor: 'private' stamp: 'AG 6/1/2023 12:47:15' prior: 50618971!
+addToCurrentReportMessagesOf: aReport
+
+	^ aReport do: [:message | currentReport add: (self actualLeftPadding , message)]! !
+
+----SNAPSHOT----(1 June 2023 12:47:36) CuisUniversity-5799.image priorSource: 9176103!
+!TransferTest methodsFor: 'testing' stamp: 'AG 6/1/2023 15:46:47'!
+transfer50To: acc2 from: acc1
+
+	^ Transfer with: 50 from: acc1 to: acc2! !
+!TransferTest methodsFor: 'testing' stamp: 'AG 6/1/2023 15:46:47' prior: 50618151!
+test03TransferOutCounterPartIsTransferIn
+
+	|transactionOut transactionIn acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.
+	acc2 := ReceptiveAccount new.
+	self transfer50To: acc2 from: acc1.
+		
+	transactionOut := acc1 transactions first. 
+	transactionIn := acc2 transactions first.
+	
+	self assert: transactionOut counterPart equals: transactionIn.
+	! !
+!TransferTest methodsFor: 'testing' stamp: 'AG 6/1/2023 15:46:47' prior: 50618179!
+test04TransferInCounterPartIsTransferOut
+
+	|transactionOut transactionIn acc1 acc2|
+	
+	acc1 := ReceptiveAccount new.
+	acc2 := ReceptiveAccount new.
+	self transfer50To: acc2 from: acc1.
+		
+	transactionOut := acc1 transactions first. 
+	transactionIn := acc2 transactions first.
+	
+	self assert: transactionIn counterPart equals: transactionOut.
+	! !
+!TransferTest methodsFor: 'testing' stamp: 'AG 6/1/2023 15:46:47' prior: 50618235!
+test01TransferToAccountAffectsBalance
+
+	|transfer acc1 acc2|
+	
+	acc1 := self receptiveAccountWith150Deposit.
+	acc2 := ReceptiveAccount new.
+	transfer := self transfer50To: acc2 from: acc1.
+	
+	self assert: acc1 balance equals: 100.
+	self assert: acc2 balance equals: 50.
+	! !
+!TransferTest methodsFor: 'testing' stamp: 'AG 6/1/2023 15:46:47' prior: 50618247!
+test02TransferKnowsItsValue
+
+	|transfer acc1 acc2|
+	
+	acc1 := self receptiveAccountWith150Deposit.
+	acc2 := ReceptiveAccount new.
+	transfer := self transfer50To: acc2 from: acc1.
+	
+	self assert: transfer value equals: 50.
+	! !
+!TransferTest methodsFor: 'testing' stamp: 'AG 6/1/2023 15:47:12' prior: 50619080!
+transfer50To: aReceiverAccount from: acc1
+
+	^ Transfer with: 50 from: acc1 to: aReceiverAccount! !
+!TransferTest methodsFor: 'testing' stamp: 'AG 6/1/2023 15:47:58' prior: 50619135!
+transfer50To: aBeneficiaryAccount from: acc1
+
+	^ Transfer with: 50 from: acc1 to: aBeneficiaryAccount! !
+!TransferTest methodsFor: 'testing' stamp: 'AG 6/1/2023 15:48:03' prior: 50619141!
+transfer50To: aBeneficiaryAccount from: aCreditorAccount
+
+	^ Transfer with: 50 from: aCreditorAccount to: aBeneficiaryAccount! !
+
+!testRun: #TransferTest #test03TransferOutCounterPartIsTransferIn stamp: 'AG 6/1/2023 15:48:23'!
+PASSED!
+
+!testRun: #TransferTest #test01TransferToAccountAffectsBalance stamp: 'AG 6/1/2023 15:48:25'!
+PASSED!
+
+!testRun: #TransferTest #test02TransferKnowsItsValue stamp: 'AG 6/1/2023 15:48:25'!
+PASSED!
+
+!testRun: #TransferTest #test03TransferOutCounterPartIsTransferIn stamp: 'AG 6/1/2023 15:48:25'!
+PASSED!
+
+!testRun: #TransferTest #test04TransferInCounterPartIsTransferOut stamp: 'AG 6/1/2023 15:48:25'!
+PASSED!
+
+!testRun: #TransferTest #test05ZeroValueTransferShouldRaiseInvalidAmmountError stamp: 'AG 6/1/2023 15:48:25'!
+PASSED!
+
+----SNAPSHOT----(1 June 2023 15:50:33) CuisUniversity-5799.image priorSource: 9197659!
+!AccountTransactionsTreeReporter methodsFor: 'execution' stamp: 'AG 6/1/2023 15:55:59' prior: 50618980 overrides: 50617129!
+executeForReceptiveAccountOf: aReceptiveAccount  
+	|transactionsReport|
+	
+	self addToCurrentReport: aReceptiveAccount.
+	
+	self incrementTabCounter .
+	
+	transactionsReport := (AccountSummaryReporter for: aReceptiveAccount ) accountSummary .
+	
+	self addToCurrentReportMessagesOf: transactionsReport.
+	
+	self decreseTabCounter .! !
+
+----SNAPSHOT----(1 June 2023 15:56:38) CuisUniversity-5799.image priorSource: 9200729!
+!ReportTest methodsFor: 'testing' stamp: 'AG 6/1/2023 16:31:20'!
+test01AnEmptyReceptiveAccountHasZeroBalanceAccountSummary
+
+	|acc1 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Balance = 0'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.! !
+
+!methodRemoval: ReportTest #test01AccountSummaryOfEmptyReceptiveAccountReturnsZeroBalance stamp: 'AG 6/1/2023 16:31:20'!
+test01AccountSummaryOfEmptyReceptiveAccountReturnsZeroBalance
+
+	|acc1 reporte|
+	
+	acc1 := ReceptiveAccount new.	
+	
+	reporte := OrderedCollection new.
+	reporte add: 'Balance = 0'.
+	
+	self assert: (AccountSummaryReporter for: acc1) accountSummary equals: reporte.!
