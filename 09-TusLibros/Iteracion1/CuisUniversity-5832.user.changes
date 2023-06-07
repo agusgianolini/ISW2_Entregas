@@ -1,0 +1,681 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (7 June 2023 16:57:15) as F:\Manuel\Trabajos\EXACTAS\Ingenieria de Software I\CuisUniversity 29-05-23\tusLibros\CuisUniversity-5832.image!
+
+
+Object subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'mp 6/7/2023 16:58:02'!
+Object subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'mp 6/7/2023 16:58:18'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'mp 6/7/2023 16:58:32'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'nil' stamp: 'mp 6/7/2023 17:00:16'!
+test01CreateNewCartStartsEmpty
+	|cart|
+	
+	cart := Cart new.
+	
+	self assert: cart isEmpty.! !
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:01:27'!
+ERROR!
+!Cart methodsFor: 'nil' stamp: 'mp 6/7/2023 17:01:49'!
+isEmpty
+	^true! !
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:01:54'!
+PASSED!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:01:54'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:08:07'!
+test02AddABookToEmptyCartMakesItNoEmpty
+	|cart|
+	
+	cart := Cart new.
+	cart add: #Book.
+	
+	self deny: cart isEmpty.! !
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:08:10'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'mp 6/7/2023 17:09:52'!
+Object subclass: #Cart
+	instanceVariableNames: 'books'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:09:50'!
+add: aBook
+	books add: aBook! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:10:19' overrides: 16920235!
+initialize
+	books := OrderedCollection new.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:10:41' prior: 50624408!
+isEmpty
+	^books isEmpty ! !
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:10:44'!
+PASSED!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:10:46'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:10:46'!
+PASSED!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:10:51'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:10:51'!
+PASSED!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'mp 6/7/2023 17:21:31'!
+Object subclass: #Cart
+	instanceVariableNames: 'books isEmpty'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:21:29' prior: 50624437 overrides: 16920235!
+initialize
+	isEmpty := true.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:21:45' prior: 50624433!
+add: aBook
+	isEmpty = false.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:21:51' prior: 50624442!
+isEmpty
+	^isEmpty ! !
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'mp 6/7/2023 17:21:59'!
+Object subclass: #Cart
+	instanceVariableNames: 'isEmpty'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:22:03'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:22:03'!
+FAILURE!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:22:03'!
+FAILURE!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:22:10'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:22:16'!
+FAILURE!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:22:16'!
+FAILURE!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:22:26'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:23:05' prior: 50624473!
+add: aBook
+	isEmpty := false.! !
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:23:08'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:23:08'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:38:22'!
+test03CanFindABookOnCartWithABookAdded
+	|cart|
+	
+	cart := Cart new.
+	cart add: #Book1.	
+	
+	self assert: cart hasBook: #Book1.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:38:38' prior: 50624519!
+test03CanFindABookOnCartWithABookAdded
+	|cart|
+	
+	cart := Cart new.
+	cart add: #Book.	
+	
+	self assert: cart hasBook: #Book.! !
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 17:38:43'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:38:55' prior: 50624526!
+test03CanFindABookOnCartWithABookAdded
+	|cart|
+	
+	cart := Cart new.
+	cart add: #Book.	
+	
+	self assert: (cart hasBook: #Book).! !
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 17:38:57'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'mp 6/7/2023 17:39:32'!
+Object subclass: #Cart
+	instanceVariableNames: 'isEmpty book'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:39:29' prior: 50624509!
+add: aBook
+	isEmpty := false.
+	book := aBook.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:39:49' prior: 50624469 overrides: 16920235!
+initialize
+	isEmpty := true.
+	book := nil.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:40:17'!
+hasBook: aBook
+	^book = aBook.! !
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:40:21'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:40:21'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 17:40:21'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:40:39' prior: 50624477!
+isEmpty
+	^book = nil ! !
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:40:41'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:40:42'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 17:40:42'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:40:47' prior: 50624558 overrides: 16920235!
+initialize
+	book := nil.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:40:59' prior: 50624553!
+add: aBook
+	book := aBook.! !
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'mp 6/7/2023 17:41:02'!
+Object subclass: #Cart
+	instanceVariableNames: 'book'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:41:06'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:41:06'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 17:41:06'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:42:18'!
+test04AddASecondBookToCartShouldKeepsBoth
+	|cart|
+	
+	cart := Cart new.
+	cart add: #Book1.	
+	cart add: #Book2.
+	
+	self assert: (cart hasBook: #Book1).
+	self assert: (cart hasBook: #Book2).! !
+
+!testRun: #CartTest #test04AddASecondBookToCartShouldKeepsBoth stamp: 'mp 6/7/2023 17:42:20'!
+FAILURE!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'mp 6/7/2023 17:42:31'!
+Object subclass: #Cart
+	instanceVariableNames: 'book books'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:42:30' prior: 50624593!
+add: aBook
+	books := aBook.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:42:45' prior: 50624589 overrides: 16920235!
+initialize
+	books := OrderedCollection new.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:42:54' prior: 50624575!
+isEmpty
+	^books isEmpty ! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:46:04' prior: 50624562!
+hasBook: aBook
+	^books anySatisfy:[:bookIterable | bookIterable = aBook].! !
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'mp 6/7/2023 17:46:13'!
+Object subclass: #Cart
+	instanceVariableNames: 'books'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:46:23' prior: 50624645!
+hasBook: aBook
+	^books anySatisfy:[:book | book = aBook].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:46:27' prior: 50624657!
+hasBook: aBook
+
+	^books anySatisfy:[:book | book = aBook].! !
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:46:28'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:46:29'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 17:46:29'!
+FAILURE!
+
+!testRun: #CartTest #test04AddASecondBookToCartShouldKeepsBoth stamp: 'mp 6/7/2023 17:46:29'!
+FAILURE!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 17:46:34'!
+FAILURE!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:48:02' prior: 50624536!
+test03CanFindABookOnCartWithABookAdded
+	|cart|
+	
+	cart := Cart new.
+	cart add: 'Book'.	
+	
+	self assert: (cart hasBook: 'Book').! !
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 17:48:03'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:48:38' prior: 50624662!
+hasBook: aBook
+
+	^books anySatisfy: [:book | book = aBook].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:50:46' prior: 50624693!
+hasBook: aBook
+
+	^books anySatisfy: [:book | aBook = book].! !
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:50:47'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:50:47'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 17:50:47'!
+FAILURE!
+
+!testRun: #CartTest #test04AddASecondBookToCartShouldKeepsBoth stamp: 'mp 6/7/2023 17:50:47'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 17:51:05' prior: 50624631!
+add: aBook
+	books add: aBook.! !
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 17:51:10'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 17:51:10'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 17:51:10'!
+PASSED!
+
+!testRun: #CartTest #test04AddASecondBookToCartShouldKeepsBoth stamp: 'mp 6/7/2023 17:51:10'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 18:16:35'!
+test05SendListToCartShouldReturnTheBookListOfTheCart
+	|cart list|
+	
+	cart := Cart new.
+	cart add: #Book1.	
+	cart add: #Book2.
+	
+	list := OrderedCollection with: #Book1 with: #Book2.
+	
+	self assert: (cart list = list).! !
+
+!testRun: #CartTest #test05SendListToCartShouldReturnTheBookListOfTheCart stamp: 'mp 6/7/2023 18:16:38'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 18:16:48'!
+list
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 18:16:58' prior: 50624745!
+list
+	^books copy! !
+
+!testRun: #CartTest #test05SendListToCartShouldReturnTheBookListOfTheCart stamp: 'mp 6/7/2023 18:17:00'!
+PASSED!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 18:17:00'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 18:17:00'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 18:17:00'!
+PASSED!
+
+!testRun: #CartTest #test04AddASecondBookToCartShouldKeepsBoth stamp: 'mp 6/7/2023 18:17:00'!
+PASSED!
+
+!testRun: #CartTest #test05SendListToCartShouldReturnTheBookListOfTheCart stamp: 'mp 6/7/2023 18:17:00'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 18:27:14'!
+listBooks
+	^books copy! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 18:27:14' prior: 50624732!
+test05SendListToCartShouldReturnTheBookListOfTheCart
+	|cart list|
+	
+	cart := Cart new.
+	cart add: #Book1.	
+	cart add: #Book2.
+	
+	list := OrderedCollection with: #Book1 with: #Book2.
+	
+	self assert: (cart listBooks = list).! !
+
+!methodRemoval: Cart #list stamp: 'mp 6/7/2023 18:27:14'!
+list
+	^books copy!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 18:27:19'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 18:27:19'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 18:27:19'!
+PASSED!
+
+!testRun: #CartTest #test04AddASecondBookToCartShouldKeepsBoth stamp: 'mp 6/7/2023 18:27:19'!
+PASSED!
+
+!testRun: #CartTest #test05SendListToCartShouldReturnTheBookListOfTheCart stamp: 'mp 6/7/2023 18:27:19'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 19:06:33'!
+test06
+	|cart|
+	
+	cart := Cart new.
+	cart add: #Book1.		
+	cart add: #Book1.		
+	cart add: #Book1.		
+		
+	self assert: (cart quantityHasOf: #Book1) equals: 3.! !
+
+!testRun: #CartTest #test06 stamp: 'mp 6/7/2023 19:06:37'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 19:06:44'!
+quantityHasOf: aRenameMe1 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 19:08:15' prior: 50624814!
+quantityHasOf: aBookToFind 
+	^books count: [:book | book = aBookToFind ]! !
+
+!testRun: #CartTest #test06 stamp: 'mp 6/7/2023 19:08:17'!
+PASSED!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 19:08:17'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 19:08:17'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 19:08:17'!
+PASSED!
+
+!testRun: #CartTest #test04AddASecondBookToCartShouldKeepsBoth stamp: 'mp 6/7/2023 19:08:17'!
+PASSED!
+
+!testRun: #CartTest #test05SendListToCartShouldReturnTheBookListOfTheCart stamp: 'mp 6/7/2023 19:08:17'!
+PASSED!
+
+!testRun: #CartTest #test06 stamp: 'mp 6/7/2023 19:08:17'!
+PASSED!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 19:09:04'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 19:09:04'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 19:09:04'!
+PASSED!
+
+!testRun: #CartTest #test04AddASecondBookToCartShouldKeepsBoth stamp: 'mp 6/7/2023 19:09:04'!
+PASSED!
+
+!testRun: #CartTest #test05SendListToCartShouldReturnTheBookListOfTheCart stamp: 'mp 6/7/2023 19:09:04'!
+PASSED!
+
+!testRun: #CartTest #test06 stamp: 'mp 6/7/2023 19:09:04'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 19:11:33'!
+test06CanFindTheQuantityOfTimesABookIsInACart
+	|cart|
+	
+	cart := Cart new.
+	cart add: #Book1.		
+	cart add: #Book1.		
+	cart add: #Book1.		
+		
+	self assert: (cart quantityHasOf: #Book1) equals: 3.! !
+
+!methodRemoval: CartTest #test06 stamp: 'mp 6/7/2023 19:11:36'!
+test06
+	|cart|
+	
+	cart := Cart new.
+	cart add: #Book1.		
+	cart add: #Book1.		
+	cart add: #Book1.		
+		
+	self assert: (cart quantityHasOf: #Book1) equals: 3.!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 19:24:11' prior: 50624862!
+test06CanFindTheQuantityOfTimesABookIsInACart
+	|cart|
+	
+	cart := Cart new.
+	cart add: #Book1 quantity: 3.		
+		
+	self assert: (cart quantityHasOf: #Book1) equals: 3.! !
+
+!testRun: #CartTest #test06CanFindTheQuantityOfTimesABookIsInACart stamp: 'mp 6/7/2023 19:24:28'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 19:24:36'!
+add: aRenameMe1 quantity: aRenameMe2 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 19:25:40' prior: 50624889!
+add: aBook quantity: bookQuantity 
+	books add: aBook withOccurrences: bookQuantity ! !
+
+!testRun: #CartTest #test06CanFindTheQuantityOfTimesABookIsInACart stamp: 'mp 6/7/2023 19:25:41'!
+PASSED!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 19:25:41'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 19:25:41'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 19:25:41'!
+PASSED!
+
+!testRun: #CartTest #test04AddASecondBookToCartShouldKeepsBoth stamp: 'mp 6/7/2023 19:25:41'!
+PASSED!
+
+!testRun: #CartTest #test05SendListToCartShouldReturnTheBookListOfTheCart stamp: 'mp 6/7/2023 19:25:41'!
+PASSED!
+
+!testRun: #CartTest #test06CanFindTheQuantityOfTimesABookIsInACart stamp: 'mp 6/7/2023 19:25:41'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 19:33:40'!
+test07CanNotAddLessThanOneUnitOfABookToACart
+	|cart|
+	
+	cart := Cart new.
+	
+	self 
+		should: [cart add: #Book1 quantity: 0]
+		raise: Error
+		withExceptionDo: [:error | 
+			self assert: 'Can not add less than one unit of book' equals: error messageText]! !
+
+!testRun: #CartTest #test07CanNotAddLessThanOneUnitOfABookToACart stamp: 'mp 6/7/2023 19:33:54'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 19:35:49' prior: 50624894!
+add: aBook quantity: bookQuantity 
+	
+	(bookQuantity < 1) ifTrue: [self error: 'Can not add less than one unit of book'].
+	
+	books add: aBook withOccurrences: bookQuantity ! !
+
+!testRun: #CartTest #test07CanNotAddLessThanOneUnitOfABookToACart stamp: 'mp 6/7/2023 19:35:55'!
+PASSED!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 19:35:55'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 19:35:56'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 19:35:56'!
+PASSED!
+
+!testRun: #CartTest #test04AddASecondBookToCartShouldKeepsBoth stamp: 'mp 6/7/2023 19:35:56'!
+PASSED!
+
+!testRun: #CartTest #test05SendListToCartShouldReturnTheBookListOfTheCart stamp: 'mp 6/7/2023 19:35:56'!
+PASSED!
+
+!testRun: #CartTest #test06CanFindTheQuantityOfTimesABookIsInACart stamp: 'mp 6/7/2023 19:35:56'!
+PASSED!
+
+!testRun: #CartTest #test07CanNotAddLessThanOneUnitOfABookToACart stamp: 'mp 6/7/2023 19:35:56'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 19:36:37'!
+validateQuantity: bookQuantity
+
+	^ (bookQuantity < 1) ifTrue: [self error: 'Can not add less than one unit of book']! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 19:36:37' prior: 50624937!
+add: aBook quantity: bookQuantity 
+	
+	self validateQuantity: bookQuantity.
+	
+	books add: aBook withOccurrences: bookQuantity ! !
+!Cart class methodsFor: 'nil' stamp: 'mp 6/7/2023 19:37:39'!
+invalidBookQuantityErrorDescription
+	
+	^'Can not add less than one unit of book'! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 19:38:17' prior: 50624971!
+validateQuantity: bookQuantity
+
+	^ (bookQuantity < 1) ifTrue: [self error: self class invalidBookQuantityErrorDescription ]! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'mp 6/7/2023 19:38:35' prior: 50624922!
+test07CanNotAddLessThanOneUnitOfABookToACart
+	|cart|
+	
+	cart := Cart new.
+	
+	self 
+		should: [cart add: #Book1 quantity: 0]
+		raise: Error
+		withExceptionDo: [:error | 
+			self assert: Cart invalidBookQuantityErrorDescription equals: error messageText]! !
+
+!testRun: #CartTest #test07CanNotAddLessThanOneUnitOfABookToACart stamp: 'mp 6/7/2023 19:38:37'!
+PASSED!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 19:38:37'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 19:38:37'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 19:38:37'!
+PASSED!
+
+!testRun: #CartTest #test04AddASecondBookToCartShouldKeepsBoth stamp: 'mp 6/7/2023 19:38:37'!
+PASSED!
+
+!testRun: #CartTest #test05SendListToCartShouldReturnTheBookListOfTheCart stamp: 'mp 6/7/2023 19:38:37'!
+PASSED!
+
+!testRun: #CartTest #test06CanFindTheQuantityOfTimesABookIsInACart stamp: 'mp 6/7/2023 19:38:37'!
+PASSED!
+
+!testRun: #CartTest #test07CanNotAddLessThanOneUnitOfABookToACart stamp: 'mp 6/7/2023 19:38:37'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'mp 6/7/2023 19:45:01' prior: 50624683!
+test03CanFindABookOnCartWithABookAdded
+	|cart|
+	
+	cart := Cart new.
+	cart add: #Book.	
+	
+	self assert: (cart hasBook: #Book).! !
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 19:45:02'!
+PASSED!
+
+!testRun: #CartTest #test01CreateNewCartStartsEmpty stamp: 'mp 6/7/2023 19:45:02'!
+PASSED!
+
+!testRun: #CartTest #test02AddABookToEmptyCartMakesItNoEmpty stamp: 'mp 6/7/2023 19:45:02'!
+PASSED!
+
+!testRun: #CartTest #test03CanFindABookOnCartWithABookAdded stamp: 'mp 6/7/2023 19:45:02'!
+PASSED!
+
+!testRun: #CartTest #test04AddASecondBookToCartShouldKeepsBoth stamp: 'mp 6/7/2023 19:45:02'!
+PASSED!
+
+!testRun: #CartTest #test05SendListToCartShouldReturnTheBookListOfTheCart stamp: 'mp 6/7/2023 19:45:02'!
+PASSED!
+
+!testRun: #CartTest #test06CanFindTheQuantityOfTimesABookIsInACart stamp: 'mp 6/7/2023 19:45:02'!
+PASSED!
+
+!testRun: #CartTest #test07CanNotAddLessThanOneUnitOfABookToACart stamp: 'mp 6/7/2023 19:45:02'!
+PASSED!
+
+----SNAPSHOT----(7 June 2023 20:17:17) CuisUniversity-5832.image priorSource: 9366758!
